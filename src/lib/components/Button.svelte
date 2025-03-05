@@ -20,7 +20,8 @@
 
 	type ComponentProps = ButtonProps | LinkProps;
 
-	let { children, href, onclick, isSecondary, isDanger, isMenu, ...props }: ButtonProps = $props();
+	let { children, href, onclick, isSecondary, isDanger, isMenu, ...props }: ComponentProps =
+		$props();
 </script>
 
 {#if href}
@@ -47,6 +48,11 @@
 {/if}
 
 <style>
+	a {
+		display: block;
+		text-decoration: none;
+	}
+
 	.btn {
 		padding: 12px 24px;
 		min-width: 230px;
