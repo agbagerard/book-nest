@@ -32,7 +32,7 @@
 				disabled={isReadOnly}
 			>
 				<span class="star-icon" style="--fill: {value > 1 ? 'gold' : 'rgba(100, 100, 100, 0.15)'}">
-					&#9734;
+					★
 				</span>
 			</button>
 		{/each}
