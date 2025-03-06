@@ -1,3 +1,4 @@
+import { goto } from '$app/navigation';
 import type { SupabaseClient, Session, User } from '@supabase/supabase-js';
 import { getContext, setContext } from 'svelte';
 
