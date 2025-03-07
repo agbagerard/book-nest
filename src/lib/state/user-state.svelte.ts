@@ -23,6 +23,8 @@ export interface Book {
 	user_id: string;
 }
 
+type UpdatableBookFields = Omit<Book, 'id' | 'user_id' | 'created_at'>;
+
 export class UserState {
 	session = $state<Session | null>(null);
 	supabase = $state<SupabaseClient<Database> | null>(null);
@@ -106,7 +108,47 @@ export class UserState {
 			genreCounts[a] > genreCounts[b] ? a : b
 		);
 
-		return mostCommonGenre || null;
+		return mostCommonGenre || '';
+	}
+
+	getBooksFromFavoriteGenre() {
+		const mostCommonGenre = this.getFavoriteGenre();
+
+		return this.allBooks
+			.filter((book) => book.genre?.includes(mostCommonGenre))
+			.toSorted((a, z) => {
+				const ratingA = a.rating || 0;
+				const ratingZ = z.rating || 0;
+				return ratingZ - ratingA;
+			});
+	}
+
+	getBookById(bookId: number) {
+		return this.allBooks.find((book) => book.id === bookId);
+	}
+
+	async updateBook(bookId: number, updateObject: Partial<UpdatableBookFields>) {
+		if (!this.supabase) {
+			return;
+		}
+
+		const { status, error } = await this.supabase
+			.from('books')
+			.update(updateObject)
+			.eq('id', bookId);
+
+		if (status === 204 && !error) {
+			this.allBooks = this.allBooks.map((book) => {
+				if (book.id === bookId) {
+					return {
+						...book,
+						...updateObject
+					};
+				} else {
+					return book;
+				}
+			});
+		}
 	}
 
 	async logout() {
