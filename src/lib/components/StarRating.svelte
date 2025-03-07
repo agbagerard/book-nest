@@ -31,7 +31,7 @@
 				onclick={() => handleRating(i + 1)}
 				disabled={isReadOnly}
 			>
-				<span class="star-icon" style="--fill: {value > 1 ? 'gold' : 'rgba(100, 100, 100, 0.15)'}">
+				<span class="star-icon" style="--fill: {value > i ? 'gold' : 'rgba(100, 100, 100, 0.15)'}">
 					★
 				</span>
 			</button>

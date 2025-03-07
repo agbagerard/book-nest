@@ -149,7 +149,7 @@
 					maxSize={5 * 1024 * 1024}
 					containerClasses={'dropzone-cover'}
 				>
-					Icon icon="bi:camera-fill" width={'40'} />
+					<Icon icon="bi:camera-fill" width={'40'} />
 					<p>Add book cover</p>
 				</Dropzone>
 			{/if}

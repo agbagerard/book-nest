@@ -29,6 +29,7 @@
 	"dependencies": {
 		"@supabase/ssr": "^0.5.2",
 		"@supabase/supabase-js": "^2.49.1",
+		"openai": "^4.86.2",
 		"svelte-file-dropzone": "^2.0.9"
 	}
 }
